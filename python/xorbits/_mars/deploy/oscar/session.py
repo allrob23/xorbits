@@ -14,6 +14,7 @@
 # limitations under the License.
 
 import asyncio
+import atexit
 import concurrent.futures
 import itertools
 import json
@@ -65,6 +66,7 @@ from ...utils import (
 
 logger = logging.getLogger(__name__)
 
+atexit.register(lambda: SyncSession._execution_pool.shutdown())
 
 @dataclass
 class Progress:
